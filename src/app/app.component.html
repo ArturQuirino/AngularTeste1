@@ -6,43 +6,7 @@
   <p [hidden] = 'hideEmail'>
     Your email is: <em>{{currentUser.email}}</em>
   </p>
+  <button (click)="toggle()"> Toggle(click)</button>
 </div>
 
-<input [disabled]="disabledInput" type="text" placeholder="Enter your text" />
-
-<input [disabled]="isDisabled()" type="text" placeholder="Enter your text" />
-
-<input [disabled]="isDisabled()" type="text" [value]="currentUser.username"
-                                              placeholder="Enter your text">
-
-<input [class.blue-bg]="isBlueBg" type="text" placeholder="Enter your text" />
-
-<input [style.background-color]="bgColor" type="text" placeholder="Enter your text" />
-
-
-
-<!-- <p>
-  This is just ordinary HTML paragraph
-</p>
-
-<p>
-  Result of 1 + 3 is {{1+3}}
-</p>
-
-<p>
-  Hello, {{username}}!
-</p>
-
-<p>
-  Hello, {{currentUser.username}} - {{currentUser.email}}
-</p>
-
-<p>
-  Hello, {{currentUser.username + '-' + currentUser.email}}
-</p>
-
-<p>
-  Hello, {{getUsername()}}!
-</p>
-
-<input value="{{getUsername()}}" type="text"> -->
+<button (mouseleave)="toggle()">Toggle(mouseleave)</button>
