@@ -22,7 +22,7 @@ export class AppComponent  {
     if(event.keyCode == 13){
       var inputElement = <HTMLInputElement>event.target
       this.changeMail(inputElement.value)
-      
+
     }
   }
 }
