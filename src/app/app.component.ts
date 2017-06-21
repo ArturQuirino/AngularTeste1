@@ -14,17 +14,12 @@ export class AppComponent  {
     this.hideEmail = !this.hideEmail
   }
 
-  private changeMail(newMail:string){
-    this.currentUser.email = newMail
-  }
-
-  private keyPress(event:KeyboardEvent){
-    if(event.keyCode == 13){
-      var inputElement = <HTMLInputElement>event.target
-      this.changeMail(inputElement.value)
-
-    }
-  }
+  private users:Array<User> = [
+    { username:"User1" , email:"user1@example.com" },
+    { username:"User2" , email:"user2@example.com" },
+    { username:"User3" , email:"user3@example.com" },
+    { username:"User4" , email:"user4@example.com" }
+  ]
 }
 
 interface User{
