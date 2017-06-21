@@ -1,16 +1,41 @@
-<h1>My First Angular 2 App</h1>
+<h1>Personal finance</h1>
 <div>
-  <p>
-    Hello, {{currentUser.username}}!
+  <h2>Your accounts</h2>
+  <p *ngIf="!_accounts || _accounts.length==0">
+    You don't have any accounts yet. Please
   </p>
-  <p *ngIf="!hideEmail">
-    Your email is: <em>{{currentUser.email}}</em>
-  </p>
-  <button (click)="toggle()">Toggle(click)</button>
+
+  <div *ngFor="let acc of _accounts, let i = index">
+    <h3>{{acc.title}} ({{acc.id}})</h3>
+    <p>
+      {{acc.description}}
+    </p>
+    <p>
+      Balance: <strong>{{acc.balance}}</strong>
+    </p>
+    <button (click)="removeAcc(i)">Delete</button>
+    <br />
+    <br />
+  </div>
 </div>
 
-<ul>
-  <li *ngFor="let user of users, let i=index">
-     ({{i+1}}) {{user.username}} - <em>{{user.email}}</em>
-  </li>
-</ul>
+<div>
+  <div>
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" value="" #title />
+  </div>
+
+  <div>
+    <label for="desc">Description</label>
+    <input id="desc" type="text" name="desc" value="" #desc />
+  </div>
+
+  <div>
+    <label for="bal">Balance</label>
+    <input id="bal" type="text" name="bal" value="0" #balance />
+  </div>
+
+  <div>
+    <button (click)="createAcc(title, desc, balance)">Create</button>
+  </div>
+</div>

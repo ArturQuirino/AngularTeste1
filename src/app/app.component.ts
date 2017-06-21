@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Account} from './account.model';
 
 @Component({
   selector: 'my-app',
@@ -6,23 +7,22 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent  {
-  private currentUser:User = {username: "Test", email:"test@test.com"}
+  private _accounts:Array<Account> = [
+    {id:1, title:"Bank Xyz", description:"This is my bank account.", balance:5},
+    new Account(2, "Bank Asd", "My secret account.", 1024.10)
+  ]
 
-  private hideEmail:boolean = true
+  private _nextId = 3
+  private creatAcc(titleEl:any, descEl:any, balEl:any){
+    this._accounts.push(new Account(this._nextId, titleEl.value, descEl.value, balEl.value))
+    this._nextId++
 
-  private toggle(){
-    this.hideEmail = !this.hideEmail
+    titleEl.value = ""
+    descEl.value = ""
+    balEl.value = 0
   }
 
-  private users:Array<User> = [
-    { username:"User1" , email:"user1@example.com" },
-    { username:"User2" , email:"user2@example.com" },
-    { username:"User3" , email:"user3@example.com" },
-    { username:"User4" , email:"user4@example.com" }
-  ]
-}
-
-interface User{
-  username:string,
-  email:string
+  private removeAcc(index:number){
+    this._accounts.splice(index,1)
+  }
 }
