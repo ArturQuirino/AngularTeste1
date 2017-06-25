@@ -1,41 +1,61 @@
-<h1>Personal finance</h1>
-<div>
-  <h2>Your accounts</h2>
-  <p class='info' *ngIf="!_accounts || _accounts.length==0">
-    You don't have any accounts yet. Please
-  </p>
+<div class="container">
+  <h1>Personal finance</h1>
 
-  <div class='acc' *ngFor="let acc of _accounts, let i = index">
-    <h3 class='title'>{{acc.title}} ({{acc.id}})</h3>
-    <p>
-      {{acc.description}}
-    </p>
-    <p>
-      Balance: <strong>{{acc.balance}}</strong>
-    </p>
-    <button style='color:black;' (click)="removeAcc(i)">Delete</button>
-    <br />
-    <br />
+  <h2>Your accounts</h2>
+  <div class="row" *ngIf="!_accounts || _accounts.length==0">
+    <div class='alert alert-info' >
+      <strong>You don't have any accounts yet. Please add it...</strong>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class='acc col-md-12' *ngFor="let acc of _accounts, let i = index"
+    [ngClass]="{selected:_selected[i]}">
+      <h3 class='title'>{{acc.title}} ({{acc.id}})</h3>
+      <p>
+        {{acc.description}}
+      </p>
+      <p>
+        Balance: <strong class="lead">{{acc.balance}}</strong>
+      </p>
+
+      <div class="row">
+        <div class="col-md-3">
+          <button class="btn btn-danger" (click)="removeAcc(i)">Delete</button>
+          <button class="btn btn-primary" (click)="select(i)">{{_selected[i]?'Deselect':'Select'}}</button>
+          <br />
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="row">
+  <div class="col-md-6">
+    <form>
+      <h3>Add new account</h3>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" id="title" type="text" name="title" value="" #title />
+      </div>
+
+
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <input class="form-control" id="desc" type="text" name="desc" value="" #desc />
+      </div>
+
+      <div class="form-group">
+        <label for="bal">Balance</label>
+        <input class="form-control" id="bal" type="text" name="bal" value="0" #balance />
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-success" (click)="createAcc(title, desc, balance)">Create</button>
+      </div>
+    </form>
   </div>
 </div>
-
-<div>
-  <div>
-    <label for="title">Title</label>
-    <input id="title" type="text" name="title" value="" #title />
-  </div>
-
-  <div>
-    <label for="desc">Description</label>
-    <input id="desc" type="text" name="desc" value="" #desc />
-  </div>
-
-  <div>
-    <label for="bal">Balance</label>
-    <input id="bal" type="text" name="bal" value="0" #balance />
-  </div>
-
-  <div>
-    <button (click)="createAcc(title, desc, balance)">Create</button>
-  </div>
 </div>
