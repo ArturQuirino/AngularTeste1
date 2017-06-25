@@ -1,7 +1,8 @@
 <div class="container">
   <h1>Your accounts</h1>
 
-<accounts-list></accounts-list>
+<accounts-list [accounts]="_accounts" (delete)="removeAcc($event)"></accounts-list>
+
 
   <div class="row">
     <div class="col-md-6">

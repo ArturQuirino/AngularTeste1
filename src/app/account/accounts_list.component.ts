@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Account} from './account.model';
 
 @Component({
@@ -7,23 +7,12 @@ import {Account} from './account.model';
   styleUrls: ['app/account/accounts_list.component.css']
 })
 
-
-
 export class AccountsList{
-  private _accounts:Array<Account> = [
-    new Account(1, "Bank XYZ", "This is my bank account.", 501.2),
-    new Account(2, "Bank Asd", "My secret account.", 1024.10)
-  ]
+  @Input('accounts') _accounts:Array<Account>;
 
-  private _selected:Array<boolean> = [false,false]
+  @Output('delete') delete = new EventEmitter<Number>()
 
-
-  private removeAcc(index:number){
-    this._accounts.splice(index,1)
-    this._selected.splice(index,1)
-  }
-
-  private select(index:number){
-    this._selected[index] = !this._selected[index];
+  private _remove(index:number){
+    this.delete.emit(index);
   }
 }
