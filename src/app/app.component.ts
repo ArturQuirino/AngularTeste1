@@ -1,42 +1,43 @@
-import { Component, ViewChild } from '@angular/core';
-import {Account} from './account.model';
-import { AccountsList } from './account/accounts_list.component';
-import { AccountForm } from './account/account_form.component';
+import {Component, ViewChild, Injector} from "@angular/core";
+import {Account} from "./account/account.model";
+import {AccountsList} from "./account/accounts_list.component";
+import {AccountForm} from "./account/account_form.component";
+import {AccountService, ACCOUNT_SERVICE_PROVIDERS} from "./account/account.services"
 
 @Component({
   selector: 'my-app',
   templateUrl: 'app/app.component.html',
-  styleUrls: ['app/app.component.css']
+  styleUrls:['app/app.component.css'],
+  providers: [ACCOUNT_SERVICE_PROVIDERS],
+
 })
 
-export class AppComponent  {
+export class AppComponent{
+  private _accounts:Array<Account> = [];
+  private _accountService:AccountService;
 
-  private _accounts:Array<Account> = [
-    new Account(1, "Bank XYZ", "This is my bank account.", 501.2),
-    new Account(2, "Bank Asd", "My secret account.", 1024.10)
-  ]
+  constructor(accountService:AccountService){
+    this._accountService = accountService;
+    var promise = this._accountService.getAll(); 
+    promise.then(accounts => this._accounts = accounts);
+  }
 
-  private _nextId = 3
+  private createAccError:string = "";
 
-  private createAccError:string="";
-  private accLimit:number = 3;
-
-  private createAcc(newAccount:Account)
-  {
-    this.createAccError="";
-
-    if(this._accounts.length<this.accLimit){
-      newAccount.id=this._nextId++;
-      this._accounts.push(newAccount);
+  private createAcc(newAccount:Account){
+    this._accountService.create(newAccount)
+    .then(account => {
+      console.log(account);
+      this.createAccError = "";
       this.form.resetForm();
-    }else{
-      this.createAccError = "Only " + this.accLimit + " account(s) allowed."
-    }
+    })
+    .catch(err => this.createAccError = err);
   }
 
   private removeAcc(index:number){
-    this._accounts.splice(index,1)
+    this._accountService.remove(index).then(account=>console.log(account));
   }
 
   @ViewChild(AccountForm) form:AccountForm;
+
 }
