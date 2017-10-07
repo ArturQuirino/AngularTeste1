@@ -16,15 +16,10 @@ export class AppComponent  {
 
   private _nextId = 3
 
-  private createAcc(titleEl:any, descEl:any, balEl:any)
+  private createAcc(newAccount:Account)
   {
-    // this._accounts.push(new Account(this._nextId, titleEl.value, descEl.value, balEl.value))
-    // this._nextId++
-    // this._selected.push(false);
-
-    titleEl.value = ""
-    descEl.value = ""
-    balEl.value = 0
+    newAccount.id=this._nextId++;
+    this._accounts.push(newAccount);
   }
 
   private removeAcc(index:number){

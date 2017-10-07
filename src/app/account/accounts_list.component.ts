@@ -2,9 +2,9 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Account} from './account.model';
 
 @Component({
-  selector: 'accounts-list',
-  templateUrl: 'app/account/accounts_list.component.html',
-  styleUrls: ['app/account/accounts_list.component.css']
+    selector: 'accounts-list',
+    templateUrl: 'app/account/accounts_list.component.html',
+    styleUrls: ['app/account/accounts_list.component.css']
 })
 
 export class AccountsList{
