@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './account/account.component';
 import { ListComponent } from './account/list.component';
 import { CreateComponent } from './account/create.component';
+import { DetailsComponent } from './account/details.component';
+
 import { AccountsList } from './account/accounts_list.component';
 import { AccountForm } from './account/account_form.component';
 import { APP_ROUTER_PROVIDERS } from './app.routes';
@@ -22,7 +24,8 @@ import { APP_ROUTER_PROVIDERS } from './app.routes';
     HomeComponent,
     AccountComponent,
     ListComponent,
-    CreateComponent
+    CreateComponent,
+    DetailsComponent
   ],
 
   bootstrap:    [ AppComponent ],

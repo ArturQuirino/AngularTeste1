@@ -8,11 +8,17 @@ import {Account} from './account.model';
 })
 
 export class AccountsList{
-  @Input('accounts') _accounts:Array<Account>;
+  @Input('accounts') _accounts: Array<Account>;
 
-  @Output('delete') delete = new EventEmitter<Number>()
+  @Output('delete') delete = new EventEmitter<Number>();
 
-  private _remove(index:number){
+  @Output() details = new EventEmitter<Account>();
+
+  private _remove(index: number) {
     this.delete.emit(index);
+  }
+
+  private _showDetails(account: Account) {
+    this.details.emit(account);
   }
 }
