@@ -49,11 +49,12 @@
                                 <td><span *ngFor="let tag of t.tags" class="label label-primary">{{tag}}</span></td>
 
                             </tr>
-
                         </tbody>
-
                     </table>
                 </div>
+
+                <button [routerLink]="['/transactions', 'create', {account: _account.id}]"
+                class="btn btn-primary">Add transaction</button>
             </div>
 
         </div>

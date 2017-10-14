@@ -8,6 +8,8 @@ import { AccountComponent } from './account/account.component';
 import { ListComponent } from './account/list.component';
 import { CreateComponent } from './account/create.component';
 import { DetailsComponent } from './account/details.component';
+import { TransactionComponent } from './transaction/transaction.component';
+import { CreateComponent as TransactionCreateComponent } from './transaction/create.component';
 
 import { AccountsList } from './account/accounts_list.component';
 import { AccountForm } from './account/account_form.component';
@@ -25,7 +27,9 @@ import { APP_ROUTER_PROVIDERS } from './app.routes';
     AccountComponent,
     ListComponent,
     CreateComponent,
-    DetailsComponent
+    DetailsComponent,
+    TransactionComponent,
+    TransactionCreateComponent
   ],
 
   bootstrap:    [ AppComponent ],
